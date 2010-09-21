@@ -4,12 +4,12 @@
 		<author>Dan Harvey (dan.harvey@mendeley.com)</author>
 		<description>Mendeley OAPI</description>
 		<documentationURL>http://www.mendeley.com/oapi/methods/</documentationURL>
-		<sampleQuery>select * from {table} where query = "quantum physics"</sampleQuery>
+		<sampleQuery>select * from {table} where tag = "physics"</sampleQuery>
 	</meta>
 	<bindings>
 		<select itemPath="json.documents" produces="JSON">
 			<urls>
-				<url>http://www.mendeley.com/oapi/documents/search/{query}</url>
+				<url>http://www.mendeley.com/oapi/documents/tagged/{tag}</url>
 			</urls>
 			<paging model="page">
 				<start id="page" default="0"/>
@@ -17,7 +17,10 @@
 				<total default="20"/>
 			</paging>
 			<inputs>
-				<key id="query" type="xs:string" paramType="path" required="true"/>
+				<key id="tag" type="xs:string" paramType="path" required="true"/>
+
+				<key id="cat" type="xs:string" paramType="query" required="false"/>
+				<key id="subcat" type = "xs:string" paramType="query" required="false"/>
 				
 				<key id="consumer_key" type="xs:string" paramType="query" default="d838ad2d90ed761088d24eaf310c1b6804c1ceacc" private="true"/>
 			</inputs>
